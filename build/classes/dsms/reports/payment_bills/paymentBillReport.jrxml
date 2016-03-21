@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="25"/>
+	<parameter name="payment_id" class="java.lang.String"/>
+	<parameter name="registration_id" class="java.lang.String"/>
+	<parameter name="name" class="java.lang.String"/>
+	<parameter name="total_fee" class="java.lang.String"/>
+	<parameter name="discount" class="java.lang.String"/>
+	<parameter name="today_payment" class="java.lang.String"/>
+	<parameter name="paid_total" class="java.lang.String"/>
+	<parameter name="balance_to_pay" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="79" height="79"/>
+				<imageExpression><![CDATA["C:\\Users\\User\\Documents\\NetBeansProjects\\DrivingSchoolManagementSystem\\src\\dsms\\images\\logo102.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="79" y="1" width="466" height="78"/>
+				<imageExpression><![CDATA["C:\\Users\\User\\Documents\\NetBeansProjects\\DrivingSchoolManagementSystem\\src\\dsms\\images\\Title.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="560" splitType="Stretch">
+			<staticText>
+				<reportElement x="159" y="285" width="115" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Balance To Pay:      Rs.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="15" width="78" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Payment ID:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="339" y="437" width="121" height="20"/>
+				<textElement/>
+				<text><![CDATA[-------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="218" width="115" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Today Payment :     Rs.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="150" width="115" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Total Fee:               Rs.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="339" y="457" width="121" height="20"/>
+				<textElement/>
+				<text><![CDATA[Signature Of Receipient]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="186" width="115" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Discount :               Rs.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="305" y="15" width="44" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="61" width="78" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Registration ID:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="81" width="78" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Name:]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="349" y="15" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="114" y="15" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{payment_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="61" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{registration_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="81" width="174" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="159" y="253" width="115" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Paid Total:             Rs.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="274" y="150" width="100" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{total_fee}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="274" y="186" width="100" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{discount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="274" y="218" width="100" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{today_payment}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="274" y="253" width="100" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{paid_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="274" y="285" width="100" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{balance_to_pay}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="47" width="500" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="121" width="500" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="17" width="500" height="37" forecolor="#000099"/>
+				<textElement/>
+				<text><![CDATA[No any paid cash will be returned back.Applications will be sent to Governmment  Offices after payment  completion. ]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

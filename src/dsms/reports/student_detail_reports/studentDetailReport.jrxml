@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="registration_id" class="java.lang.String"/>
+	<parameter name="student_id" class="java.lang.String"/>
+	<parameter name="name_with_initials" class="java.lang.String"/>
+	<parameter name="surname" class="java.lang.String"/>
+	<parameter name="telephone" class="java.lang.String"/>
+	<parameter name="address" class="java.lang.String"/>
+	<parameter name="nic_no" class="java.lang.String"/>
+	<parameter name="gender" class="java.lang.String"/>
+	<parameter name="vehicle_class" class="java.lang.String"/>
+	<parameter name="instructor" class="java.lang.String"/>
+	<parameter name="total_fee" class="java.lang.String"/>
+	<parameter name="discount" class="java.lang.String"/>
+	<parameter name="lecture_date" class="java.lang.String"/>
+	<parameter name="license_number" class="java.lang.String"/>
+	<parameter name="date_of_issue" class="java.lang.String"/>
+	<parameter name="date_of_expire" class="java.lang.String"/>
+	<parameter name="old_vehicle_license_class" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="12" y="0" width="78" height="79"/>
+				<imageExpression><![CDATA["C:\\Users\\User\\Documents\\NetBeansProjects\\DrivingSchoolManagementSystem\\src\\dsms\\images\\logo102.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="89" y="1" width="466" height="78"/>
+				<imageExpression><![CDATA["C:\\Users\\User\\Documents\\NetBeansProjects\\DrivingSchoolManagementSystem\\src\\dsms\\images\\Title.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="540" splitType="Stretch">
+			<staticText>
+				<reportElement x="12" y="16" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Registration ID:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="367" y="16" width="62" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="429" y="16" width="100" height="20"/>
+				<textElement>
+					<font isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="36" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Student ID:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="69" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="12" y="80" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[1.Name with Initials:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="100" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[2.Surname:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="112" y="100" width="165" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{surname}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="120" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[3.Telephone:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="112" y="120" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{telephone}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="140" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[4.Address:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="112" y="140" width="279" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{address}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="160" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[5.NIC no :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="180" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[6.Gender:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="112" y="180" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{gender}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="200" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[7.Vehicle Class:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="220" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[8.Instructor:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="112" y="80" width="209" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{name_with_initials}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="160" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{nic_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="200" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{vehicle_class}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="16" width="100" height="20"/>
+				<textElement>
+					<font isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{registration_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="36" width="100" height="20"/>
+				<textElement>
+					<font isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{student_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="220" width="165" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{instructor}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="258" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="12" y="275" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[9.Total Fee:         Rs.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="112" y="275" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{total_fee}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="295" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[10.Discount :      Rs.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="112" y="295" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{discount}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="315" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="12" y="328" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[11.Lecture Date:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="112" y="328" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{lecture_date}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="358" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="12" y="374" width="154" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[12.Old License Details:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="404" width="72" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[i.License Num:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="125" y="404" width="100" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{license_number}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="424" width="72" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[ii.Date of issue :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="125" y="424" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{date_of_issue}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="444" width="85" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[iii.Date of expire :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="125" y="444" width="100" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{date_of_expire}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="464" width="126" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[iii.Referred Vehicle Classes: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="166" y="464" width="168" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{old_vehicle_license_class}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="48" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="9" splitType="Stretch"/>
+	</summary>
+</jasperReport>

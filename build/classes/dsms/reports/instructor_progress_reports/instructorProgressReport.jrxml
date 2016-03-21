@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="instructorId" class="java.lang.String"/>
+	<parameter name="title" class="java.lang.String"/>
+	<parameter name="instructorName" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="NoOfStudents" class="java.lang.Integer"/>
+	<field name="Index" class="java.lang.Integer"/>
+	<field name="Month" class="java.lang.String"/>
+	<variable name="totalStudents" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{NoOfStudents}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="89" height="79"/>
+				<imageExpression><![CDATA["C:\\Users\\User\\Documents\\NetBeansProjects\\DrivingSchoolManagementSystem\\src\\dsms\\images\\logo102.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="89" y="1" width="466" height="78"/>
+				<imageExpression><![CDATA["C:\\Users\\User\\Documents\\NetBeansProjects\\DrivingSchoolManagementSystem\\src\\dsms\\images\\Title.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="66" splitType="Stretch">
+			<textField>
+				<reportElement x="68" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{instructorId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="168" y="46" width="176" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="68" y="20" width="142" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{instructorName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="68" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Instructor ID:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="68" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="0" width="60" height="20"/>
+				<textElement/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="428" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="26" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Index]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="126" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Month]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[NoOfStudents]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="25" width="368" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="26" y="3" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Index}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="126" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Month}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="244" y="3" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NoOfStudents}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="34" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="368" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="144" y="14" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Total Students]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="244" y="14" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{totalStudents}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="6" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="170" splitType="Stretch">
+			<barChart>
+				<chart>
+					<reportElement x="0" y="0" width="555" height="170"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$P{title}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{Month}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{NoOfStudents}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#CC0000"/>
+					</plot>
+					<itemLabel/>
+					<categoryAxisLabelExpression><![CDATA["Month"]]></categoryAxisLabelExpression>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#0000CC"/>
+					</categoryAxisFormat>
+					<valueAxisLabelExpression><![CDATA["No. of Students"]]></valueAxisLabelExpression>
+					<valueAxisFormat>
+						<axisFormat labelColor="#0000CC"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

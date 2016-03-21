@@ -1,0 +1,400 @@
+-- MySQL dump 10.13  Distrib 5.5.27, for Win32 (x86)
+--
+-- Host: localhost    Database: DrivingSchool
+-- ------------------------------------------------------
+-- Server version	5.5.27
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `documentset`
+--
+
+DROP TABLE IF EXISTS `documentset`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `documentset` (
+  `registrationId` varchar(6) NOT NULL,
+  `fivePhoto` int(1) DEFAULT NULL,
+  `medicalReport` int(1) DEFAULT NULL,
+  `identityCopy` int(1) DEFAULT NULL,
+  `bCertiCopy` int(1) DEFAULT NULL,
+  `licenceCopy` int(1) DEFAULT NULL,
+  PRIMARY KEY (`registrationId`),
+  CONSTRAINT `documentset_ibfk_1` FOREIGN KEY (`registrationId`) REFERENCES `registration` (`registrationId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `documentset`
+--
+
+LOCK TABLES `documentset` WRITE;
+/*!40000 ALTER TABLE `documentset` DISABLE KEYS */;
+/*!40000 ALTER TABLE `documentset` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `examdetail`
+--
+
+DROP TABLE IF EXISTS `examdetail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `examdetail` (
+  `registrationId` varchar(6) NOT NULL,
+  `attempt` int(1) NOT NULL,
+  `date` date DEFAULT NULL,
+  `result` int(1) DEFAULT NULL,
+  PRIMARY KEY (`registrationId`,`attempt`),
+  CONSTRAINT `examdetail_ibfk_1` FOREIGN KEY (`registrationId`) REFERENCES `registration` (`registrationId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `examdetail`
+--
+
+LOCK TABLES `examdetail` WRITE;
+/*!40000 ALTER TABLE `examdetail` DISABLE KEYS */;
+INSERT INTO `examdetail` VALUES ('R001',1,'2013-06-18',1),('R002',1,'2013-06-18',0),('R003',2,'2013-06-18',1),('R006',3,'2013-09-18',-1);
+/*!40000 ALTER TABLE `examdetail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `instructor`
+--
+
+DROP TABLE IF EXISTS `instructor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `instructor` (
+  `instructorId` varchar(6) NOT NULL,
+  `classId` varchar(6) NOT NULL,
+  `name` varchar(40) DEFAULT NULL,
+  `NIC` varchar(10) DEFAULT NULL,
+  `address` varchar(60) DEFAULT NULL,
+  `instructorTel` varchar(10) DEFAULT NULL,
+  `dateOfRegistration` date DEFAULT NULL,
+  `driverLicenceNo` varchar(20) DEFAULT NULL,
+  `driverLicenceExpireDate` date DEFAULT NULL,
+  `teachingLicenceNo` varchar(20) DEFAULT NULL,
+  `teachingLicenceExpireDate` date DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
+  PRIMARY KEY (`instructorId`),
+  KEY `classId` (`classId`),
+  CONSTRAINT `instructor_ibfk_1` FOREIGN KEY (`classId`) REFERENCES `vehicleclassset` (`classId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `instructor`
+--
+
+LOCK TABLES `instructor` WRITE;
+/*!40000 ALTER TABLE `instructor` DISABLE KEYS */;
+INSERT INTO `instructor` VALUES ('I001','C002','Danapala','564565456V','Galle','0772146896','2013-12-12','01234d','2013-11-20','1133','2015-08-10',1),('I002','C003','Danasena','596321456V','Matara','0712336896','2013-02-10','01454d','2016-11-20','1453','2016-09-10',0),('I003','C001','Gunapala','789548456V','Hakmana','0767866696','2012-10-05','23454d','2014-02-22','1563','2017-06-13',1),('I004','C005','Danasena','695847456V','Galle','0772146896','2010-11-12','01234d','2013-11-20','1133','2015-08-10',1),('I005','C004','Dayasena','565489056V','Galle','0772146896','2007-04-08','0178d','2013-11-20','1133','2015-08-10',1),('I006','C006','Gunasena','858685456V','Galle','0750146896','2009-06-12','01234d','2013-11-20','1133','2015-08-10',1);
+/*!40000 ALTER TABLE `instructor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `instructorattendance`
+--
+
+DROP TABLE IF EXISTS `instructorattendance`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `instructorattendance` (
+  `instructorId` varchar(6) NOT NULL,
+  `date` date NOT NULL,
+  `intime` varchar(10) DEFAULT NULL,
+  `outtime` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`instructorId`,`date`),
+  CONSTRAINT `instructorattendance_ibfk_1` FOREIGN KEY (`instructorId`) REFERENCES `instructor` (`instructorId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `instructorattendance`
+--
+
+LOCK TABLES `instructorattendance` WRITE;
+/*!40000 ALTER TABLE `instructorattendance` DISABLE KEYS */;
+/*!40000 ALTER TABLE `instructorattendance` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `lecture`
+--
+
+DROP TABLE IF EXISTS `lecture`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lecture` (
+  `lectureDate` date NOT NULL,
+  `lecturer` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`lectureDate`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `lecture`
+--
+
+LOCK TABLES `lecture` WRITE;
+/*!40000 ALTER TABLE `lecture` DISABLE KEYS */;
+INSERT INTO `lecture` VALUES ('2013-04-18','Karunadasa'),('2013-10-18','Karunadasa');
+/*!40000 ALTER TABLE `lecture` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `oldlicensedetail`
+--
+
+DROP TABLE IF EXISTS `oldlicensedetail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `oldlicensedetail` (
+  `studentId` varchar(6) NOT NULL,
+  `oldDriverLicenceNo` varchar(20) DEFAULT NULL,
+  `oldDriverLicenceIssueDate` date DEFAULT NULL,
+  `oldDriverLicenceExpireDate` date DEFAULT NULL,
+  `classes` varchar(6) DEFAULT NULL,
+  PRIMARY KEY (`studentId`),
+  CONSTRAINT `oldlicensedetail_ibfk_1` FOREIGN KEY (`studentId`) REFERENCES `student` (`studentId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `oldlicensedetail`
+--
+
+LOCK TABLES `oldlicensedetail` WRITE;
+/*!40000 ALTER TABLE `oldlicensedetail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `oldlicensedetail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `payment`
+--
+
+DROP TABLE IF EXISTS `payment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `payment` (
+  `paymentId` varchar(6) NOT NULL,
+  `registrationId` varchar(6) NOT NULL,
+  `type` varchar(40) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `amount` decimal(10,2) DEFAULT NULL,
+  `attempt` int(1) NOT NULL,
+  PRIMARY KEY (`paymentId`),
+  KEY `registrationId` (`registrationId`),
+  CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`registrationId`) REFERENCES `registration` (`registrationId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `payment`
+--
+
+LOCK TABLES `payment` WRITE;
+/*!40000 ALTER TABLE `payment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `payment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `registration`
+--
+
+DROP TABLE IF EXISTS `registration`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `registration` (
+  `registrationId` varchar(6) NOT NULL,
+  `studentId` varchar(6) NOT NULL,
+  `classId` varchar(6) NOT NULL,
+  `instructorId` varchar(6) NOT NULL,
+  `dateOfRegistration` date NOT NULL,
+  `discount` decimal(10,2) DEFAULT NULL,
+  `totalFee` decimal(10,2) DEFAULT NULL,
+  `lectureDate` date DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
+  PRIMARY KEY (`registrationId`),
+  KEY `studentId` (`studentId`),
+  KEY `lectureDate` (`lectureDate`),
+  KEY `instructorId` (`instructorId`),
+  KEY `classId` (`classId`),
+  CONSTRAINT `registration_ibfk_1` FOREIGN KEY (`studentId`) REFERENCES `student` (`studentId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `registration_ibfk_2` FOREIGN KEY (`lectureDate`) REFERENCES `lecture` (`lectureDate`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `registration_ibfk_3` FOREIGN KEY (`instructorId`) REFERENCES `instructor` (`instructorId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `registration_ibfk_4` FOREIGN KEY (`classId`) REFERENCES `vehicleclassset` (`classId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `registration`
+--
+
+LOCK TABLES `registration` WRITE;
+/*!40000 ALTER TABLE `registration` DISABLE KEYS */;
+INSERT INTO `registration` VALUES ('R001','S002','C001','I003','2013-04-18',1000.00,12000.00,'2013-04-18',1),('R002','S001','C002','I001','2013-06-01',1200.00,13000.00,'2013-04-18',0),('R003','S003','C003','I002','2013-01-20',500.00,15000.00,'2013-04-18',1),('R004','S002','C003','I002','2013-02-18',1000.00,20000.00,'2013-04-18',0),('R005','S007','C003','I002','2013-03-09',1500.00,23000.00,'2013-04-18',0),('R006','S002','C004','I005','2013-06-28',2000.00,12000.00,'2013-04-18',1),('R007','S004','C002','I001','2013-06-19',2000.00,10000.00,'2013-04-18',1),('R008','S006','C006','I006','2013-06-18',0.00,15000.00,'2013-04-18',1),('R009','S005','C003','I002','2013-06-10',0.00,14000.00,'2013-04-18',0),('R010','S009','C006','I006','2013-07-06',0.00,16000.00,'2013-04-18',1),('R011','S008','C003','I002','2013-06-03',1500.00,15000.00,'2013-04-18',0),('R012','S011','C004','I005','2013-08-24',1200.00,20000.00,'2013-04-18',1),('R013','S002','C006','I006','2013-06-18',1000.00,30000.00,'2013-04-18',0),('R014','S010','C002','I001','2013-03-17',5000.00,26000.00,'2013-04-18',1);
+/*!40000 ALTER TABLE `registration` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `student`
+--
+
+DROP TABLE IF EXISTS `student`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `student` (
+  `studentId` varchar(6) NOT NULL,
+  `nameWithInitials` varchar(40) NOT NULL,
+  `surName` varchar(60) DEFAULT NULL,
+  `address` varchar(90) DEFAULT NULL,
+  `NIC` varchar(10) DEFAULT NULL,
+  `studentTel` varchar(10) DEFAULT NULL,
+  `gender` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`studentId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `student`
+--
+
+LOCK TABLES `student` WRITE;
+/*!40000 ALTER TABLE `student` DISABLE KEYS */;
+INSERT INTO `student` VALUES ('S001','A.Nimal','Abesekara','No.20,Main rd,Matara','869623146V','0412266876','male'),('S002','W.Vimal','Wijesekara','No.40,Main rd,Weligama','862621146V','0412223876','male'),('S003','A.Timal','Abesena','No.70,Main rd,Deniyaya','866723146V','0412266776','male'),('S004','A.Dumal','Abekoon','No.22,Main rd,Kamburugamuwa','869678146V','0412246876','male'),('S005','G.Nimali','Guunawardene','No.80,Main rd,Welihinda','869623146V','0412222876','female'),('S006','D.Kamal','Dirasekara','No.30,Main rd,Matara','939623146V','0412267876','male'),('S007','F.Chamal','Fernando','No.98,Main rd,Dikwella','909623146V','0412246376','male'),('S008','S.Namal','Silva','No.60,Main rd,Pamburana','949623146V','0412212376','male'),('S009','P.Nimala','Pinidiya','No.13,Main rd,Matara','919623146V','0412276646','female'),('S010','W.Chamali','Wimalasooriya','No.42,Main rd,Matara','889623146V','0412267646','female'),('S011','W.Pasan','Wijewardene','No.76,Main rd,Mirissa','769623146V','0412266123','male');
+/*!40000 ALTER TABLE `student` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `studentattendance`
+--
+
+DROP TABLE IF EXISTS `studentattendance`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `studentattendance` (
+  `registrationId` varchar(6) NOT NULL,
+  `instructorId` varchar(6) NOT NULL,
+  `date` date NOT NULL,
+  `turn` varchar(10) NOT NULL,
+  PRIMARY KEY (`registrationId`,`instructorId`,`date`,`turn`),
+  CONSTRAINT `studentattendance_ibfk_1` FOREIGN KEY (`registrationId`) REFERENCES `registration` (`registrationId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `studentattendance`
+--
+
+LOCK TABLES `studentattendance` WRITE;
+/*!40000 ALTER TABLE `studentattendance` DISABLE KEYS */;
+/*!40000 ALTER TABLE `studentattendance` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `trialdetail`
+--
+
+DROP TABLE IF EXISTS `trialdetail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `trialdetail` (
+  `registrationId` varchar(6) NOT NULL,
+  `attempt` int(1) NOT NULL,
+  `date` date DEFAULT NULL,
+  `result` int(1) DEFAULT NULL,
+  PRIMARY KEY (`registrationId`,`attempt`),
+  CONSTRAINT `trialdetail_ibfk_1` FOREIGN KEY (`registrationId`) REFERENCES `registration` (`registrationId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `trialdetail`
+--
+
+LOCK TABLES `trialdetail` WRITE;
+/*!40000 ALTER TABLE `trialdetail` DISABLE KEYS */;
+INSERT INTO `trialdetail` VALUES ('R001',2,'2013-08-18',1),('R001',3,'2013-09-18',1),('R002',2,'2013-05-18',1),('R003',2,'2013-09-18',1),('R004',1,'2013-07-18',-1),('R004',2,'2013-02-18',-1),('R004',3,'2013-09-18',1),('R005',1,'2013-07-18',0),('R006',1,'2013-06-18',0),('R007',1,'2013-06-18',-1),('R007',2,'2013-09-18',1),('R008',1,'2013-03-18',0),('R009',3,'2013-04-18',1),('R010',1,'2013-06-18',1),('R011',1,'2013-06-18',-1),('R011',2,'2013-10-18',1),('R012',1,'2013-06-18',1),('R014',2,'2013-06-18',-1);
+/*!40000 ALTER TABLE `trialdetail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vehicle`
+--
+
+DROP TABLE IF EXISTS `vehicle`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vehicle` (
+  `instructorId` varchar(6) NOT NULL,
+  `vehicleNo` varchar(7) NOT NULL,
+  `model` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`vehicleNo`),
+  KEY `instructorId` (`instructorId`),
+  CONSTRAINT `vehicle_ibfk_1` FOREIGN KEY (`instructorId`) REFERENCES `instructor` (`instructorId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vehicle`
+--
+
+LOCK TABLES `vehicle` WRITE;
+/*!40000 ALTER TABLE `vehicle` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vehicle` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vehicleclassset`
+--
+
+DROP TABLE IF EXISTS `vehicleclassset`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vehicleclassset` (
+  `classId` varchar(6) NOT NULL,
+  `classType` varchar(10) DEFAULT NULL,
+  `description` varchar(40) DEFAULT NULL,
+  `stampTax` decimal(10,2) DEFAULT NULL,
+  `trainingFee` decimal(10,2) DEFAULT NULL,
+  `examFee` decimal(10,2) DEFAULT NULL,
+  `trialFee` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`classId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vehicleclassset`
+--
+
+LOCK TABLES `vehicleclassset` WRITE;
+/*!40000 ALTER TABLE `vehicleclassset` DISABLE KEYS */;
+INSERT INTO `vehicleclassset` VALUES ('C001','A1','Light motorcycles',500.00,7000.00,250.00,500.00),('C002','A','Motorcycles',750.00,9000.00,250.00,500.00),('C003','B1','Threewheelers',1000.00,10000.00,250.00,500.00),('C004','B','Light motor vehicles',1200.00,15000.00,250.00,500.00),('C005','A1,B','Light motorcycles & motor vehicles',2300.00,25000.00,500.00,1000.00),('C006','D','Buses',1800.00,20000.00,250.00,500.00),('C007','A,B','Motorcycles & motor vehicles',2550.00,26000.00,500.00,1000.00);
+/*!40000 ALTER TABLE `vehicleclassset` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2013-10-10  8:22:00
